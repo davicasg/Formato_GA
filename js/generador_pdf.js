@@ -110,10 +110,10 @@ function formato_a_pdf(){
 
     doc.setFontType('normal');
     doc.text(22, 62, 'Fecha Solicitud');
-    doc.text(39.5, 59.5, 'DD');
-    doc.text(48, 59.5, 'MM');
-    doc.text(55.5, 59.5, 'AAAA');
-    doc.text(40, 62, dia.toString());
+    doc.text(39.5, 59, 'DD');
+    doc.text(48, 59, 'MM');
+    doc.text(55.5, 59, 'AAAA');
+    doc.text(39.5, 62, dia.toString());
     doc.text(48.5, 62, mes.toString());
     doc.text(56, 62, ano.toString());
     doc.line(45, 57, 45 ,62.5);
@@ -443,8 +443,8 @@ function formato_a_pdf(){
         var c=0;
         doc.setFontType('bold');
         doc.text(22.5, 88, 'Para solicitudes TDM:');
-        doc.text('Tecnología AXE:', 37.5, 92, 'center');
-        doc.text('Tecnología EWSD:', 82, 92, 'center');
+        doc.text('Tecnología AXE:', 36.5, 92, 'center');
+        doc.text('Tecnología EWSD:', 78, 92, 'center');
         doc.line(22.5,94,105,94);//linea horizontal
         doc.line(50.5,89,50.5,122);//linea vertical divisoria tecnologias
         doc.rect(22.5, 89, 82.5, 33);//Recuadro principal tecnologías TDM
@@ -556,7 +556,7 @@ function formato_a_pdf(){
         doc.text(54, 140.5, grupo_area);
         doc.text(106, 140.5, 'VICEPRESIDENCIA*:');
         doc.text(128, 140.5, vicepesidencia);
-        doc.setFontType('normal');
+        
 
         doc.rect(22.5, 138, 165, 3);//AREA Vicepresidencia
         doc.line(105,138,105,142);//linea vertical divisoria area - vicepesidencia
@@ -564,12 +564,18 @@ function formato_a_pdf(){
         doc.line(66,141,66,234);//linea vertical Lider
         doc.line(107,141,107,234);//linea vertical Nombre usuario
         doc.line(120,141,120,234);//linea vertical Cedula
-        doc.line(130,141,130,234);//linea vertical usuario
-        doc.line(165,141,165,234);//linea vertical correo
+        doc.line(132,141,132,234);//linea vertical usuario
+        doc.line(167,141,167,234);//linea vertical correo
         doc.setDrawColor(0);
         doc.setFillColor(155,194,230);//Color azul palido  
         doc.rect(22.5, 141, 165, 3, 'FD');//Encabezado
         doc.text('No.', 25, 143.5,'center');
+        doc.text('Lider funcional', 46, 143.5,'center');
+        doc.text('Nombre y Apellidos del Usuario*', 86, 143.5,'center');
+        doc.text('No. C.C.*', 113.5, 143.5,'center');
+        doc.text('Usuario de', 126, 143.5,'center');
+        doc.text('Correo Corporativo*', 148, 143.5,'center');
+        doc.text('Firma Usuario*', 177, 143.5,'center');
         var f=0;
 
         let nombres_lideres=[];
@@ -595,6 +601,7 @@ function formato_a_pdf(){
         $("input[name=correo_usuario]").each(function(){
             correos_usuarios.push(this.value);//Se obtienen todos los correos de los usuarios
         });
+        doc.setFontType('normal');
         //Creando la tabla
         for(var y=144; y<234;y++){
             f=f+1;
