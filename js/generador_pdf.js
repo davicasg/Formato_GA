@@ -19,6 +19,20 @@ function formato_a_pdf(){
     var data_perfiles_5 = document.getElementById('perfiles_5').value;
     var data_plataforma_6 = document.getElementById('plataforma_6').value;
     var data_perfiles_6 = document.getElementById('perfiles_6').value;
+    var periodo_uso_vpn = document.getElementById('periodo_uso_vpn').value;
+    var tipo_acceso_vpn = document.getElementById('tipo_acceso_vpn').value;
+    var destino_vpn = document.getElementById('destino_vpn').value;
+    var servicio_vpn = document.getElementById('servicio_vpn').value;
+    var autorizado = document.getElementById("autorizados").value;
+    var cedula_autorizado = document.getElementById("cedula_autorizado").value;
+    var cargo_autorizado = document.getElementById("cargos_etb_autorizado").value;
+    var supervisor = document.getElementById("supervisor").value;
+    var cedula_supervisor = document.getElementById("cedula_supervisor").value;
+    var cargo_supervisor = document.getElementById("cargos_etb_supervisor").value;
+    var contrato = document.getElementById("contrato").value;
+    var vicepesidencia = document.getElementById("vicepresidencia").value;
+    var grupo_area = document.getElementById('grupo_area').value;
+
     // Optional - set properties on the document
     doc.setProperties({
         title: 'Gestion de Usuarios Acceso a plataformas 05.1-05.1.2-F-021-v.11',
@@ -125,23 +139,48 @@ function formato_a_pdf(){
     doc.setFontType('normal');
     doc.text(22, 77, 'Asunto:');
 
+    
     doc.text(52, 77, 'Crear');
-    doc.rect(58, 75.5, 1.5, 1.5);//Check Crear
+    if($('input:radio[name=tipo_solicitud]:checked').val() == 'crear'){
+        doc.rect(58, 75.5, 1.5, 1.5,'F');//Check crear Seleccionado
+    }else{
+        doc.rect(58, 75.5, 1.5, 1.5);//
+    }
 
     doc.text(72, 77, 'Bloquear');
-    doc.rect(81, 75.5, 1.5, 1.5);//Check Blouear
+    if($('input:radio[name=tipo_solicitud]:checked').val() == 'bloquear'){
+        doc.rect(81, 75.5, 1.5, 1.5,'F');//Check Bloquear
+    }else{
+        doc.rect(81, 75.5, 1.5, 1.5);
+    }
 
     doc.text(96, 77, 'Modificar');
-    doc.rect(105, 75.5, 1.5, 1.5);//Check Modificar
+    if($('input:radio[name=tipo_solicitud]:checked').val() == 'modificar'){
+        doc.rect(105, 75.5, 1.5, 1.5,'F');//Check Modificar Seleccionado
+    }else{
+        doc.rect(105, 75.5, 1.5, 1.5);
+    }
 
     doc.text(120, 77, 'Desvincular');
-    doc.rect(132, 75.5, 1.5, 1.5);//Check Desvincular
+    if($('input:radio[name=tipo_solicitud]:checked').val() == 'desvincular'){
+        doc.rect(132, 75.5, 1.5, 1.5,'F');//Check Desvincular seleccionado
+    }else{
+        doc.rect(132, 75.5, 1.5, 1.5);
+    }
 
     doc.text(146, 77, 'Renovar');
-    doc.rect(155, 75.5, 1.5, 1.5);//Check Renovar
+    if($('input:radio[name=tipo_solicitud]:checked').val() == 'renovar'){
+        doc.rect(155, 75.5, 1.5, 1.5,'F');//Check Renovar seleccionado
+    }else{ 
+        doc.rect(155, 75.5, 1.5, 1.5);
+    }
 
     doc.text(174, 77, 'Eliminar');
-    doc.rect(182, 75.5, 1.5, 1.5);//Check Eliminar
+    if($('input:radio[name=tipo_solicitud]:checked').val() == 'eliminar'){
+        doc.rect(182, 75.5, 1.5, 1.5,'F');//Check Eliminar seleccionado
+    }else{
+        doc.rect(182, 75.5, 1.5, 1.5);
+    }
 
     doc.text(22, 83.5, 'Seleccione el tipo de ID:');
     doc.setDrawColor(0);
@@ -315,6 +354,7 @@ function formato_a_pdf(){
     doc.rect(20, 20, 170, 260)//Rectangulo principal
 
         // /*/*/*/*/*/*/*/*/Encabezado */*/*/*/*/*/*/*/*/*/*/*/*
+        doc.setFontType('normal');
         doc.setFontSize(6);
         doc.text('Formato',105, 22, 'center');
         doc.setFontType('bold');
@@ -325,7 +365,6 @@ function formato_a_pdf(){
         doc.text('Gestión de Usuarios para Acceso a Plataformas', 105, 27, 'center');
         //doc.addImage(imgData, 'JPEG', 165, 22, 8, 5);
         doc.line(50,20,50 ,30);//Linea vertical
-        
         doc.text(25, 24.5, '05.1-05.1.2-F-021-v.11');
         doc.line(20,25,50,25);
         doc.text(27, 27, 'Fecha de Emisión');
@@ -371,15 +410,261 @@ function formato_a_pdf(){
         
         doc.setFontSize(6);
         doc.setDrawColor(0);
-        doc.setFillColor(155,194,230);//Color azul palido  
+        doc.setFillColor(155,194,230);//Color azul palido
+        doc.rect(30, 55, 150, 27);//Recuadro principal VPN 
         doc.rect(30, 55, 150, 3, 'FD');
         doc.setFontType('bold');
         doc.text('ACCESO VPN', 105, 57.5, 'center');
-        
-        doc.setFontType('normal');
+        doc.setFillColor(174,170,170);//Color gris
+        doc.rect(30, 58, 150, 3, 'FD');
+        doc.rect(30, 64, 150, 3, 'FD');
+        doc.rect(30, 70, 150, 3, 'FD');
+        doc.rect(30, 76, 150, 3, 'FD');
+        doc.text('PERIODO USO DE ACCESO', 105, 60.5, 'center');
+        doc.text('TIPO DE ACCESO (INTERNO/EXTERNO) - GRUPO DE ACCESO SI SE CONOCE', 105, 66.5, 'center');
+        doc.text('DESTINO (Dirección IP / Rango / Red )', 105, 72.5, 'center');
+        doc.text('SERVICIO/ N° de PUERTO / TIPO DE PUERTO (TCP/UDP)', 105, 78.5, 'center');
 
+        doc.setFontType('normal');
+        doc.text(periodo_uso_vpn, 105, 63.5, 'center');//PERODO DE USO
+        doc.text(tipo_acceso_vpn, 105, 69.5, 'center');//TIPO DE ACCESO
+        doc.text(destino_vpn, 105, 75.5, 'center');//DESTINO
+        doc.text(servicio_vpn, 105, 81.5, 'center');//SERVICIO
+
+        //SOLICITUDES TDM Y NGN
+        var tecnologias_axe = ['AC05','CE06','CE12','CH12','CO04','CO09','CO14','KE04','MU05','MU08','NO05','NO07','SF00','TW05'];
+        var tecnologias_ewsd = ['AC02','AU05','BA04','BC01','BS06','CE01','CE04','CH01','CO05','CR01','CU01','ETBBO','ETBCL','FO01','HO01','KE06','MU06','NI04','NO03','OL05','PA01','RI06','SA03','SB04','SC03','SF01','SH06','SI06','SJ02','SU03','TI01','TO04']
+        var tecnologias_ngn = ['Correo de Voz', 'Grabadora Chicó', 'Grabadora Centro','HSS - Bogotá','HSS - Cali','IMS Bogotá','IMS Cali','IVR Interno','IVR Call Center','MARCAM','MSOFT Bogotá',
+        'MSOFT Cali', 'NET NET CENTRAL','PREPAGO','RED INTELIGENTE','SAS','SATIP','SBC ORACLE','SBC HUAWEI','SLB Bogotá','SG7000 Centro','SG7000 Chico','SPG Bogotá','SPG Cali','SRP',
+        'Sonda OCOM Palladion','SX3000 ATCA Bogotá','SX3000 ATCA Cali','Tarificador','UMG Autopista','UMG Cali Fijas','UMG Cali Móviles','UMG Centro','UMG Chicó','UMG Cuni','UMG Muzú',
+        'UMG Normandía','UMG - NGN','UMG San Fernando','VASCLOUD'];
+        var z=0;
+        var k=0;
+        var c=0;
+        doc.setFontType('bold');
+        doc.text(22.5, 88, 'Para solicitudes TDM:');
+        doc.text('Tecnología AXE:', 37.5, 92, 'center');
+        doc.text('Tecnología EWSD:', 82, 92, 'center');
+        doc.line(22.5,94,105,94);//linea horizontal
+        doc.line(50.5,89,50.5,122);//linea vertical divisoria tecnologias
+        doc.rect(22.5, 89, 82.5, 33);//Recuadro principal tecnologías TDM
+        doc.text(107, 88, 'Para solicitudes NGN:');
+        doc.rect(107, 89, 80.5, 40);//Recuadro principal tecnologías NGN
 
         doc.setFontSize(5);
+        doc.setFontType('normal');
+
+        if($("#plataforma_1").val()==163 || $("#plataforma_2").val()==163 || $("#plataforma_3").val()==163 || $("#plataforma_4").val()==163 ||$("#plataforma_5").val()==163 || $("#plataforma_6").val()==163){
+            let checks_tdm_axe = [];
+            //Se obtienen los checks de las tecnologias AXE Seleccionadas
+            $("input:checkbox[name=tdm_axe]:checked").each(function(){
+                checks_tdm_axe.push(this.value);
+            });
+            //console.log(checks_tdm_axe);
+            //Check Box AXE
+            for(x=24;x<51;x++){
+                for(y=95;y<119;y++){
+                    if(z==14){
+                        //debido a que no es una matriz cuadrada
+                    }else{
+                        if(checks_tdm_axe.indexOf(tecnologias_axe[z])>=0){
+                            doc.rect(x, y, 1.5, 1.5,'F');
+                        }else{
+                            doc.rect(x, y, 1.5, 1.5);
+                        }
+                        doc.text(x+2, y+1.5, tecnologias_axe[z]);
+                        y=y+4;
+                        z=z+1;
+                    }
+                }
+                x=x+8;
+            }
+
+            let checks_tdm_ewsd = [];
+            //Se obtienen los checks de las tecnologias EWSD Seleccionadas
+            $("input:checkbox[name=tdm_ewsd]:checked").each(function(){
+                checks_tdm_ewsd.push(this.value);
+            });
+            //console.log(checks_tdm_ewsd);
+            //Check Box EWSD
+            for(x=52;x<106;x++){
+                for(y=95;y<119;y++){
+                    if(checks_tdm_ewsd.indexOf(tecnologias_ewsd[k])>=0){
+                        doc.rect(x, y, 1.5, 1.5,'F');
+                    }else{
+                        doc.rect(x, y, 1.5, 1.5);
+                    }
+                    doc.text(x+2, y+1.5, tecnologias_ewsd[k]);
+                    y=y+4;
+                    k=k+1;
+                }
+                x=x+8;
+            }
+            if(checks_tdm_ewsd.indexOf(tecnologias_ewsd[30])>=0){
+                doc.rect(67.5, 119, 1.5, 1.5,'F');//TI01
+            }else{
+                doc.rect(67.5, 119, 1.5, 1.5);//TI01
+            }
+            doc.text(69.5, 120.5, tecnologias_ewsd[30]);
+
+            if(checks_tdm_ewsd.indexOf(tecnologias_ewsd[31])>=0){
+                doc.rect(85.5, 119, 1.5, 1.5,'F');//TO04
+            }else{
+                doc.rect(85.5, 119, 1.5, 1.5);//TO04
+            }
+            doc.text(87.5, 120.5, tecnologias_ewsd[31]);
+        }
+
+        if($("#plataforma_1").val()==112 || $("#plataforma_2").val()==112 || $("#plataforma_3").val()==112 || $("#plataforma_4").val()==112 ||$("#plataforma_5").val()==112 || $("#plataforma_6").val()==112){
+            let checks_ngn = [];
+            $("input:checkbox[name=ngn]:checked").each(function(){
+                checks_ngn.push(this.value);
+            });
+            //Checks Box NGN
+            for(x=108;x<170;x++){
+                for(y=90;y<130;y++){
+                    if(checks_ngn.indexOf(tecnologias_ngn[c])>=0){
+                        doc.rect(x, y, 1.5, 1.5,'F');
+                    }else{
+                        doc.rect(x, y, 1.5, 1.5);
+                    }
+                    doc.text(x+2, y+1.5, tecnologias_ngn[c]);
+                    y=y+3;
+                    c=c+1;
+                }
+                if(x==108){
+                    x=x+17;
+                }
+                if(x==126){
+                    x=x+19;
+                }
+                if(x==146){
+                    x=x+22;
+                }
+                
+            }
+        }
+        
+        // relacion de usuarios
+        doc.setFontSize(6);
+        doc.setDrawColor(0);
+        doc.setFillColor(155,194,230);//Color azul palido  
+        doc.rect(20, 133, 170, 3, 'FD');
+        doc.setFontType('bold');
+        doc.text("RELACION DE ID's DE USUARIOS ACCESO PLATAFORMA o VPN", 105, 135.5, 'center');
+        doc.text(23, 140.5, 'ÁREA / GRUPO FUNCIONAL*:');
+        doc.text(54, 140.5, grupo_area);
+        doc.text(106, 140.5, 'VICEPRESIDENCIA*:');
+        doc.text(128, 140.5, vicepesidencia);
+        doc.setFontType('normal');
+
+        doc.rect(22.5, 138, 165, 3);//AREA Vicepresidencia
+        doc.line(105,138,105,142);//linea vertical divisoria area - vicepesidencia
+        doc.line(27,141,27,234);//linea vertical Consecutivo
+        doc.line(66,141,66,234);//linea vertical Lider
+        doc.line(107,141,107,234);//linea vertical Nombre usuario
+        doc.line(120,141,120,234);//linea vertical Cedula
+        doc.line(130,141,130,234);//linea vertical usuario
+        doc.line(165,141,165,234);//linea vertical correo
+        doc.setDrawColor(0);
+        doc.setFillColor(155,194,230);//Color azul palido  
+        doc.rect(22.5, 141, 165, 3, 'FD');//Encabezado
+        doc.text('No.', 25, 143.5,'center');
+        var f=0;
+
+        let nombres_lideres=[];
+        let nombres_usuarios=[];
+        let cedulas_usuarios=[];
+        let usuarios=[];
+        let correos_usuarios=[];
+        $("input[name=nombre_lider]").each(function(){
+            nombres_lideres.push(this.value);//Se obtienen todos los nombres de los lideres
+        });
+        $("input[name=nombre_usuario]").each(function(){
+            nombres_usuarios.push(this.value);//Se obtienen todos los nombre de los usuarios
+        });
+
+        $("input[name=cedula_usuario]").each(function(){
+            cedulas_usuarios.push(this.value);//Se obtienen todas las cedulas de los usuarios
+        });
+
+        $("input[name=usuario]").each(function(){
+            usuarios.push(this.value);//Se obtienen todos los usuarios
+        });
+
+        $("input[name=correo_usuario]").each(function(){
+            correos_usuarios.push(this.value);//Se obtienen todos los correos de los usuarios
+        });
+        //Creando la tabla
+        for(var y=144; y<234;y++){
+            f=f+1;
+            doc.rect(22.5, y, 165, 3);
+            doc.text((f).toString(), 25, y+2.5, 'center');//Consecutivo
+            y=y+2;
+        }
+        //Rellenando la tabla
+        pos_y = 146.5;
+        for(var i=0;i<document.getElementById('cont_user').value;i++){
+            doc.text(nombres_lideres[i], 46, pos_y, 'center');//
+            doc.text(nombres_usuarios[i], 84, pos_y, 'center');//
+            doc.text(cedulas_usuarios[i], 113.5, pos_y, 'center');//
+            doc.text(usuarios[i], 125, pos_y, 'center');//
+            doc.text(correos_usuarios[i], 148, pos_y, 'center');//
+            pos_y = pos_y + 3;
+        }
+
+        doc.rect(22.5, 234, 165, 3);//Recuadro total Usuarios
+        doc.text(23, 236.5, 'TOTAL USUARIOS SOLICITADOS: '+document.getElementById('cont_user').value);
+
+        doc.setDrawColor(0);
+        doc.setFillColor(155,194,230);//Color azul palido  
+        doc.rect(20, 244, 170, 3, 'FD');
+        doc.setFontType('bold');
+        doc.text("FIRMAS AUTORIZADORAS - APROBADORAS", 105, 246.5, 'center');
+
+        doc.text(23, 241, 'NOTA: Los campos con * son obligatorios');
+        doc.rect(22.5, 250, 78, 26);//Recuadro AUTORIZADO
+        doc.setFontType('normal');
+        doc.text("DATOS GERENTE, DIRECTOR o AUTORIZADO ETB - AUTORIZACIÓN", 59, 252, 'center');
+        doc.text("(Aplica para funcionarios ETB o contratistas)", 59, 254, 'center');
+        doc.text(25, 258, 'Firma:');
+        doc.text(25, 262, 'Nombre:');
+        
+        if(autorizado != ""){
+            autorizado = autorizados[autorizados.indexOf(autorizado)-1];//autorizado="";
+        }
+        doc.text(autorizado, 64, 262, 'center');
+        doc.text(25, 266, 'Cargo:');
+
+        if(cargo_autorizado != ""){
+            cargo_autorizado = cargos[parseInt(cargo_autorizado)];
+        }
+        doc.text(cargo_autorizado, 64, 266, 'center');
+        doc.text(25, 270, 'C.C.:');
+        doc.text(cedula_autorizado, 64, 270, 'center');
+        //doc.text(25, 274, 'Contrato');
+
+        doc.rect(110, 250, 78, 26);//Recuadro SUPERVISOR CONTRATO
+        doc.text("DATOS DE SUPERVISOR ADMINISTRATIVO CONTRATO - APROBACIÓN", 149, 252, 'center');
+        doc.text("(Aplica para usuarios no funcionarios ETB)", 149, 254, 'center');
+        doc.text(112, 258, 'Firma:');
+        doc.text(112, 262, 'Nombre:');
+        doc.text(supervisor, 156, 262, 'center');
+        doc.text(112, 266, 'Cargo:');
+        if(cargo_supervisor != ""){
+            cargo_supervisor = cargos[parseInt(cargo_supervisor)];
+        }
+        doc.text(cargo_supervisor, 156, 266, 'center');
+        doc.text(112, 270, 'C.C.:');
+        doc.text(cedula_supervisor.toString(), 156, 270, 'center');
+        doc.text(112, 274, 'Contrato No.:');
+        doc.text(contrato, 156, 274, 'center');
+        
+        doc.setFontSize(5);
+        doc.text("Señor Director o Supervisor: Comunique cuando el funcionario que hace uso de este derecho ha dejado de ejecutar sus funciones y solicite su desvinculación.", 105, 279, 'center');
+
+        //Pie de Pagina 
+        
         doc.setFontType('italic');
         doc.text(20, 290, '“Una vez impreso este documento, se considerará documento no controlado”');
         doc.text(185, 290, 'Pág. 2');
