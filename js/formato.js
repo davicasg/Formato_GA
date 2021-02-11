@@ -366,6 +366,7 @@ function cargar_datos(){
         plataforma_6.innerHTML += "<option value='"+i+"'>"+plataformas[i]+"</option>";
 
         for(var k in perfiles[i]){
+            console.log("entrando _x_x_x");
             perfiles_1.innerHTML += "<option value='"+perfiles[i][k]+"' data-chained='"+i+"'>"+perfiles[i][k]+"</option>";
             perfiles_2.innerHTML += "<option value='"+perfiles[i][k]+"' data-chained='"+i+"'>"+perfiles[i][k]+"</option>";
             perfiles_3.innerHTML += "<option value='"+perfiles[i][k]+"' data-chained='"+i+"'>"+perfiles[i][k]+"</option>";
