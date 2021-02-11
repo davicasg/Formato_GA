@@ -295,7 +295,7 @@ function formato_a_pdf(){
     doc.rect(30, 162.5, 150, 3, 'FD');//Titulo Perfil
     doc.text('PLATAFORMA', 105, 158, 'center');
     doc.text('PERFIL', 105, 164.5, 'center');
-    doc.text(data_plataforma_2, 105, 161.5, 'center');
+    doc.text(data_plataforma_1, 105, 161.5, 'center');
     doc.text(data_perfiles_1, 105, 168, 'center');
     
 
@@ -677,7 +677,7 @@ function formato_a_pdf(){
         doc.text(185, 290, 'Pág. 2');
    
     doc.save('05.1-05.1.2-F-021-v.11 Formato Gestión de Acceso.pdf');
-
+    
 }
 
 

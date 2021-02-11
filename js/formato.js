@@ -314,6 +314,16 @@ var autorizados = [
     'WILSON YAIR CHAVEZ HERNANDEZ', '79894030', 
     'YHONNY WILLIAN REYES GARCIA', '76312137',     
 ]
+/*
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})*/
 
 var fecha_actual = new Date();
 var fecha = document.getElementById("fecha");
@@ -390,34 +400,40 @@ function cargar_datos(){
     //$("#TDM_AXE").hide();
     //$("#TDM_EWSD").hide();
 }
-
+var inicial=1;
 //Muestra u oculta la cantidad de usuarios en la tabla de Relación de Usuarios
 function generar_tabla(){
-
+    
   //var tabla   = document.getElementById("tabla_usuarios");
   var tblBody = document.getElementById("tabla_registros");
-  $("#tabla_registros").empty();//limpiar tabla
-
-    for (var j = 0; j < document.getElementById("cont_user").value; j++) {
-        var row = tblBody.insertRow(j);
-        var cell1 = row.insertCell(0); // # registro 
-        var cell2 = row.insertCell(1); // Lider Funcional
-        var cell3 = row.insertCell(2); // Nombre Usuario
-        var cell4 = row.insertCell(3); // Cedula
-        var cell5 = row.insertCell(4); // Usuario
-        var cell6 = row.insertCell(5); // Correo
-        //var cell7 = row.insertCell(6); // firma
-
-        cell1.innerHTML = (j+1).toString().bold();
-        cell2.innerHTML = "<input type='text' class='form-control' id='' placeholder='' required minlength='9' name='nombre_lider'>";
-        cell3.innerHTML = "<input type='text' class='form-control' id='' placeholder='' required minlength='9' name='nombre_usuario' >";
-        cell4.innerHTML = "<input type='number' class='form-control' id='' placeholder='' name='cedula_usuario' required min='1000000' maxlength='10' oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>";
-        cell5.innerHTML = "<input type='text' class='form-control' id='' placeholder='' name='usuario' required minlength='7' maxlength='9'>";;
-        cell6.innerHTML = "<input type='email' class='form-control' id='' placeholder='' name='correo_usuario' required>";
-        //cell7.innerHTML = '';
+  //$("#tabla_registros").empty();//limpiar tabla
+    if (document.getElementById("cont_user").value>inicial){
+        for(inicial;inicial<document.getElementById("cont_user").value;inicial++){
+            var row = tblBody.insertRow(inicial);
+            var cell1 = row.insertCell(0); // # registro 
+            var cell2 = row.insertCell(1); // Lider Funcional
+            var cell3 = row.insertCell(2); // Nombre Usuario
+            var cell4 = row.insertCell(3); // Cedula
+            var cell5 = row.insertCell(4); // Usuario
+            var cell6 = row.insertCell(5); // Correo
+            //var cell7 = row.insertCell(6); // firma
+            cell1.innerHTML = (inicial+1).toString().bold();
+            cell2.innerHTML = "<input type='text' class='form-control' id='' placeholder='' required minlength='9' name='nombre_lider'>";
+            cell3.innerHTML = "<input type='text' class='form-control' id='' placeholder='' required minlength='9' name='nombre_usuario' >";
+            cell4.innerHTML = "<input type='number' class='form-control' id='' placeholder='' name='cedula_usuario' required min='1000000' maxlength='10' oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>";
+            cell5.innerHTML = "<input type='text' class='form-control' id='' placeholder='' name='usuario' required minlength='7' maxlength='9'>";;
+            cell6.innerHTML = "<input type='email' class='form-control' id='' placeholder='' name='correo_usuario' required>";
+        }
+        inicial = parseInt(document.getElementById("cont_user").value);
+        
+    }else{
+        for(inicial;inicial>document.getElementById("cont_user").value;inicial--){
+            tblBody.deleteRow(inicial-1);
+        }
+        inicial = parseInt(document.getElementById("cont_user").value);
+        
     }
- 
-
+    
 }
 
 //Muestra u oculta la cantidad de plataformas solicitadas
@@ -603,3 +619,192 @@ $("#autorizados").change(function(){
     $("#cedula_autorizado").val($("#autorizados").val());
 });
 
+
+    function validacion(){
+        
+        let data_lideres=[];
+        let data_nombres_usuarios=[];
+        let data_cedulas_usuarios=[];
+        let data_usuarios=[];
+        let data_correos_usuarios=[];
+        var validacion_plataformas=0;
+        var validacion_contratista=0;
+        //Si la longitud del campo lider es mayor a 9 digitos, se guarda el valor en el array
+        $("input[name=nombre_lider]").each(function(){
+            if (this.value.length >=9 ){
+                data_lideres.push(this.value);
+            }
+        });
+
+        //Si la longitud del campo nombre de usuario es mayor a 9 digitos, se guarda el valor en el array
+        $("input[name=nombre_usuario]").each(function(){
+            if (this.value.length >=9 ){
+                data_nombres_usuarios.push(this.value);
+            }
+        });
+
+        //Si la longitud del campo cedula de usuario es mayor a 7 digitos y mayor a 1000000, se guarda el valor en el array
+        $("input[name=cedula_usuario]").each(function(){
+            if (this.value.length >=7 && this.value >= 1000000 ){
+                data_cedulas_usuarios.push(this.value);
+            }
+        });
+
+        //Si la longitud del campo usuario es mayor o igual a 7 digitos, se guarda el valor en el array
+        $("input[name=usuario]").each(function(){
+            if (this.value.length >=7 ){
+                data_usuarios.push(this.value);
+            }
+        });
+
+        var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);//Expresion regular que valida un correo electronico
+        //Si la longitud del campo correo es mayor o igual a 7 digitos, se guarda el valor en el array
+        $("input[name=correo_usuario]").each(function(){
+            if (this.value.length >=12 && caract.test(this.value) == true ){
+                data_correos_usuarios.push(this.value);
+            }
+        });
+
+        if($("#cont_platforms").val()==1){
+            if($("#perfiles_1").val() != ""){
+                validacion_plataformas=1;
+            }else{
+                validacion_plataformas=0;
+            }
+        }
+
+        if($("#cont_platforms").val()==2){
+            if($("#perfiles_1").val() != "" &&  $("#perfiles_2").val() != ""){
+                validacion_plataformas=1;
+            }else{
+                validacion_plataformas=0;
+            }
+        }
+
+        if($("#cont_platforms").val()==3){
+            if($("#perfiles_1").val() != "" &&  $("#perfiles_2").val() != "" &&  $("#perfiles_3").val() != ""){
+                validacion_plataformas=1;
+            }else{
+                validacion_plataformas=0;
+            }
+        }
+
+        if($("#cont_platforms").val()==4){
+            if($("#perfiles_1").val() != "" &&  $("#perfiles_2").val() != "" &&  $("#perfiles_3").val() != "" &&  $("#perfiles_4").val() != ""){
+                validacion_plataformas=1;
+            }else{
+                validacion_plataformas=0;
+            }
+        }
+
+        if($("#cont_platforms").val()==5){
+            if($("#perfiles_1").val() != "" &&  $("#perfiles_2").val() != "" &&  $("#perfiles_3").val() != "" &&  $("#perfiles_4").val() != "" &&  $("#perfiles_5").val() != ""){
+                validacion_plataformas=1;
+            }else{
+                validacion_plataformas=0;
+            }
+        }
+
+        if($("#cont_platforms").val()==6){
+            if($("#perfiles_1").val() != "" &&  $("#perfiles_2").val() != "" &&  $("#perfiles_3").val() != "" &&  $("#perfiles_4").val() != "" &&  $("#perfiles_5").val() != "" &&  $("#perfiles_6").val() != ""){
+                validacion_plataformas=1;
+            }else{
+                validacion_plataformas=0;
+            }
+        }
+        
+        //Validación de correo etb o contratista 
+        var c1 = new RegExp(/\.pr(?=\@etb)/);//Devuelve true si antes del '@etb' hay un ".pr"
+        var c2 = new RegExp(/\@(?!etb)/);//true siempre que despues del '@' no este la palabra etb -> @etb = false |||| @xxxx = true
+
+
+        for(var i in data_correos_usuarios){
+            if(c1.test(data_correos_usuarios[i])==true || c2.test(data_correos_usuarios[i])==true){
+                $("#supervisor").attr('required', true);
+                $("#cedula_supervisor").attr('required', true);
+                $("#cargos_etb_supervisor").attr('required', true);
+                $("#contrato").attr('required', true);
+                validacion_contratista=1;
+            }else{
+                $("#supervisor").attr('required', false);
+                $("#cedula_supervisor").attr('required', false);
+                $("#cargos_etb_supervisor").attr('required', false);
+                $("#contrato").attr('required', false);
+                validacion_contratista=0;
+            }
+        }
+
+
+
+        if($("#nombre_solicitante").val().length >= 10){
+            if($("#empresa_cargo").val().length >= 5){
+                if($("#telefono").val().length >= 7 && $("#telefono").val()>=1000000){
+                    if($('input:radio[name=tipo_solicitud]:checked').val() != undefined){
+                        //Si la longitud del array coincide con la cantidad de usuarios del formulario
+                        if (data_lideres.length == $("#cont_user").val() && data_nombres_usuarios.length == $("#cont_user").val() && data_cedulas_usuarios.length == $("#cont_user").val() && data_usuarios.length == $("#cont_user").val() && data_correos_usuarios.length == $("#cont_user").val()){
+                            if(validacion_plataformas==1){
+                                if($("#grupo_area").val().length >= 3){
+                                    if($("#vicepresidencia").val().length >= 5){
+                                        if($("#autorizados").val().length != ""){
+                                            if($("#cargos_etb_autorizado").val().length != ""){
+                                                if(validacion_contratista==1){//En caso de ser contratista se solicitan los datos del supervisor del contrato
+                                                    if($("#supervisor").val().length >= 5){
+                                                        if($("#cedula_supervisor").val().length >= 7 && $("#cedula_supervisor").val()>1000000){
+                                                            if($("#cargos_etb_supervisor").val().length != ""){
+                                                                if($("#contrato").val().length >= 5){
+                                                                    $("#descarga").attr('disabled',false);
+                                                                    
+                                                                }else{
+                                                                    $("#descarga").attr('disabled',true);
+                                                                }
+                                                            }else{
+                                                                $("#descarga").attr('disabled',true);
+                                                            }
+                                                        }else{
+                                                            $("#descarga").attr('disabled',true);
+                                                        }
+                                                    }else{
+                                                        $("#descarga").attr('disabled',true);
+                                                    }
+                                                }else{
+                                                    $("#descarga").attr('disabled',false);
+                                                }
+                                            }else{
+                                                $("#descarga").attr('disabled',true);
+                                            }
+                                        }else{
+                                            $("#descarga").attr('disabled',true);
+                                        }
+                                    }else{
+                                        $("#descarga").attr('disabled',true);
+                                    }
+                                }else{
+                                    $("#descarga").attr('disabled',true);
+                                }
+                                
+                            }else{
+                                $("#descarga").attr('disabled',true);
+                            }
+                            
+                        }else{
+                            $("#descarga").attr('disabled',true);
+                        }
+                    }else{
+                        $("#descarga").attr('disabled',true);
+                    }
+                }else{
+                    $("#descarga").attr('disabled',true);
+                }
+            }else{
+                $("#descarga").attr('disabled',true);
+            }
+        }else{
+            $("#descarga").attr('disabled',true);
+        }
+
+
+
+    }
+    
+    setInterval('validacion()',500);
+    
