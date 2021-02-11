@@ -548,6 +548,7 @@ function mostrar_plataformas(){
 
 //Asocia la plataforma con los respectivos perfiles
 $(function(){
+    console.log("entrando al datachained");
     $("#perfiles_1").chained("#plataforma_1");
     $("#perfiles_2").chained("#plataforma_2");
     $("#perfiles_3").chained("#plataforma_3");
