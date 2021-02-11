@@ -620,7 +620,7 @@ $("#autorizados").change(function(){
     $("#cedula_autorizado").val($("#autorizados").val());
 });
 
-
+/*
     function validacion(){
         
         let data_lideres=[];
@@ -814,4 +814,4 @@ $("#autorizados").change(function(){
     }
     
     setInterval('validacion()',500);
-    
+    */
