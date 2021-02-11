@@ -1,0 +1,860 @@
+
+<!--
+  Formulario Formato Gestion de Usuarios Acceso a plataformas 05.1-05.1.2-F-021-v.11
+
+  Fecha:          08-02-2021
+
+  Elaborado por:  David Castro G. - Especialista Atención a Fallas Corporativo - Colvatel
+                  Mesa Gestión de Servicios
+                  Dirección Aseguramiento Servicios Corporativos
+
+  Revisado Por: William Gaona Díaz – Profesional Especializado II - ETB
+
+  Aprobado Por: 
+
+  Control de Cambios: Descripción                       Fecha
+                      
+                      Creación del formulario           08/02/2021
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formato Gestión de Acceso a Plataformas</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="img/etb.ico" sizes="32x32">
+</head>
+
+<body onload="cargar_datos()" >
+
+    <!--Contenedor Principal-->
+  <div class="container-md">
+    <br>
+    <!--Alerta uso Formulario Formato Gestión de Acceso-->
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+
+      <h4 class="alert-heading text-center">MGS Mesa Gestión de Servicios</h4>
+      <h6 class="alert-heading">Bienvendo Señor(a) solicitante:</h6>
+
+      <p>
+        El objetivo de este formulario es guiarlo para que pueda generar el formato <b>Gestión de Usuarios para Accesso
+          a Plataforma V.11</b>
+        sin campos obligatorios faltantes que a menudo son causal de rechazo en los requerimientos (WO) para solicitudes
+        de Acceso a Plataformas.
+        Por favor, antes de utilizar esta ayuda tenga en cuenta lo siguiente:
+      <ul>
+        <li>Su uso NO es obligatorio</li>
+        <li>No pretende reemplazar el formato de excel aprobado, publicado y disponible en el repositorio destinado
+          para tal fin, aunque el archivo generado aquí sea idéntico (si evidencia lo contrario, por favor abstengase de usarlo)
+        </li>
+        <li>Si bien el formulario cuenta con validación de datos, no quiere decir que la información suministrada sea
+          véridica, es decir, únicamente garantiza que: (1) todos los campos obligatorios sean diligenciados y (2) que los perfiles y las plataformas
+          estén correlacionados. Teniendo en cuenta lo anterior, no obliga a la MGS a rechazar por otros motivos a que den lugar.
+        </li>
+        <li>No da por entendidas ni leídas las responsabilidades ni obligaciones que se encuentran debidamente
+          enunciadas en el formato y que se adquieren al recibir el usuario de acceso a la herramienta solicitada
+          administrada por la Gerencia Administración Red Central.</li>
+        <li>En este formulario no aparece toda la información contenida en el formato; solamente los campos a
+          diligenciar, por lo tanto, el orden
+          y la distribución pueden variar.
+        </li>
+        <li>Si todos los campos del formulario están diligenciados, al final se habilitará un botón para su descarga en
+          formato pdf, el cual podrá adjuntar
+          a la WO. 
+        </li>
+        <li>El principal objetivo de la realización de este formulario es reducir el rechazo de las WO por mal
+          diligenciamiento y así evitar re-procesos tanto para el solicitante, los usuarios y la MGS. En la medida de lo
+          posible se mantendrá actualizado en su última versión. Estará disponible a todo el personal de ETB.
+        </li>
+        <li>Si evidencia errores lógicos o en la información, y si así lo desea, nos puede informar escribiendo un
+          correo a <a
+            href="mailto:mgs_mesagestionservicios@etb.com.co?Subject=Error%20Formulario%20Web%20Gestión%20de%20Acceso">mgs_mesagestionservicios@etb.com.co</a>
+        </li>
+
+      </ul>
+
+      </p>
+      <hr>
+      <p class="mb-0"><small><i>Dirección Aseguramiento Servicios Corporativos, 2021 © ETB S.A. ESP. Todos los derechos
+            reservados. | Experiencias por Toda Bogotá</i> </small></p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <h1 class="my-5 text-center">Gestión de Usuarios para Acceso a Plataformas</h1>
+
+
+    <!--FORMULARIO GESTIÓN ACCESO A PLATAFORMAS-->
+    <form class="row was-validated">
+
+      <!--Datos Solicitante-->
+      <div class="row bd-callout " style="width: 97%;">
+        <br>
+        <h4 class="text-decoration-underline ">Datos Solicitante</h4>
+        <div class="col-md-4">
+          <label for="inputEmail4" class="form-label">Fecha Solicitud</label>
+          <input type="date" class="form-control" id="fecha" required disabled>
+        </div>
+
+        <div class="col-md-8">
+          <label for="validationTextarea" class="form-label">Nombre</label>
+          <input type="text" class="form-control is-invalid" id="nombre_solicitante" placeholder="Nombres y apellidos" required
+            minlength="10">
+          <br>
+        </div>
+
+        <div class="col-md-8">
+          <label for="inputAddress" class="form-label">Empresa / Cargo</label>
+          <input type="text" class="form-control is-invalid" id="empresa_cargo" placeholder="" required minlength="5">
+        </div>
+        <div class="col-md-4">
+          <label for="inputAddress2" class="form-label">Teléfono</label>
+          <input type="number" class="form-control" id="telefono" placeholder="" required min="1000000"
+            maxlength="10"
+            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+          <br>
+        </div>
+      </div>
+     
+      <!--Tipo solicitud-->
+      <div class="row bd-callout" style="width: 97%;">
+        <div class="col">
+
+        <h4 class="text-decoration-underline">Tipo de Solicitud</h4>
+        <br>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input" type="radio" name="tipo_solicitud" id="inlineRadio1" value="crear" required>
+          <label class="form-check-label" for="inlineRadio1">Crear</label>
+        </div>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input" type="radio" name="tipo_solicitud" id="inlineRadio2" value="bloquear" required>
+          <label class="form-check-label" for="inlineRadio2">Bloquear</label>
+        </div>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input" type="radio" name="tipo_solicitud" id="inlineRadio3" value="modificar">
+          <label class="form-check-label" for="inlineRadio3">Modificar</label>
+        </div>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input" type="radio" name="tipo_solicitud" id="inlineRadio4" value="desvincular">
+          <label class="form-check-label" for="inlineRadio4">Desvincular</label>
+        </div>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input" type="radio" name="tipo_solicitud" id="inlineRadio5" value="renovar">
+          <label class="form-check-label" for="inlineRadio5">Renovar</label>
+        </div>
+        <div class="form-check form-switch form-check-inline">
+          <input class="form-check-input" type="radio" name="tipo_solicitud" id="inlineRadio6" value="eliminar">
+          <label class="form-check-label" for="inlineRadio6">Eliminar</label>
+        </div>
+
+        <div class="col">
+          <label for="inputAddress" class="form-label">Observaciones de la solicitud o justificación</label>
+          <textarea class="form-control" id="observaciones" rows="3"></textarea>
+          <br>
+        </div>
+
+      </div>
+      </div>
+
+
+      <!--Plataformas-->
+      <div class="row bd-callout" style="width: 97%;">
+        <br>
+        <h4 class="text-decoration-underline">Plataformas</h4>
+        <!--Selección Cantidad Plataformas-->
+        <div class="form-floating">
+          <select class="form-select" id="cont_platforms" name="cont_platforms" required
+            aria-label="Floating label select example" onchange="mostrar_plataformas()">
+            <option selected value="1">1</option>
+          </select>
+          <label for="floatingSelect">Cantidad de plataformas</label>
+          <br>
+        </div>
+        <!--Plataforma 1-->
+        <div class="input-group mb-3">
+          <span class="input-group-text">Plataforma 1</span>
+          <select class="form-select" required aria-label="Default select example" id="plataforma_1"
+            name="plataforma_1">
+            <option selected value="">Seleccione</option>
+          </select>
+          <span class="input-group-text">Perfil</span>
+          <select class="form-select" id="perfiles_1" name="perfiles_1" required aria-label="Default select example">
+            <option selected value="">-----</option>
+          </select>
+        </div>
+        <!--Plataforma 2-->
+        <div class="input-group mb-3" id="combo_plataforma_2" hidden>
+          <span class="input-group-text">Plataforma 2</span>
+          <select class="form-select" aria-label="Default select example" id="plataforma_2" name="plataforma_2">
+            <option selected value="">Seleccione</option>
+          </select>
+          <span class="input-group-text">Perfil</span>
+          <select class="form-select" id="perfiles_2" name="perfiles_2" aria-label="Default select example">
+            <option selected value="">-----</option>
+          </select>
+        </div>
+        <!--Plataforma 3-->
+        <div class="input-group mb-3" id="combo_plataforma_3" hidden>
+          <span class="input-group-text">Plataforma 3</span>
+          <select class="form-select" aria-label="Default select example" id="plataforma_3" name="plataforma_3">
+            <option selected value="">Seleccione</option>
+          </select>
+          <span class="input-group-text">Perfil</span>
+          <select class="form-select" id="perfiles_3" name="perfiles_3" aria-label="Default select example">
+            <option selected value="">-----</option>
+          </select>
+        </div>
+
+        <!--Plataforma 4-->
+        <div class="input-group mb-3" id="combo_plataforma_4" hidden>
+          <span class="input-group-text">Plataforma 4</span>
+          <select class="form-select" aria-label="Default select example" id="plataforma_4" name="plataforma_4">
+            <option selected value="">Seleccione</option>
+          </select>
+          <span class="input-group-text">Perfil</span>
+          <select class="form-select" id="perfiles_4" name="perfiles_4" aria-label="Default select example">
+            <option selected value="">-----</option>
+          </select>
+        </div>
+
+        <!--Plataforma 5-->
+        <div class="input-group mb-3" id="combo_plataforma_5" hidden>
+          <span class="input-group-text">Plataforma 5</span>
+          <select class="form-select" aria-label="Default select example" id="plataforma_5" name="plataforma_5">
+            <option selected value="">Seleccione</option>
+          </select>
+          <span class="input-group-text">Perfil</span>
+          <select class="form-select" id="perfiles_5" name="perfiles_5" aria-label="Default select example">
+            <option selected value="">-----</option>
+          </select>
+        </div>
+
+        <!--Plataforma 6-->
+        <div class="input-group mb-3" id="combo_plataforma_6" hidden>
+          <span class="input-group-text">Plataforma 6</span>
+          <select class="form-select" aria-label="Default select example" id="plataforma_6" name="plataforma_6">
+            <option selected value="">Seleccione</option>
+          </select>
+          <span class="input-group-text">Perfil</span>
+          <select class="form-select" id="perfiles_6" name="perfiles_6" aria-label="Default select example">
+            <option selected value="">-----</option>
+          </select>
+          <br>
+        </div>
+        <br>
+        <!--/*/*/*/*/*/*/*/*/*/ Plataforma TDM /*/*/*/*/*/*/*/*/-->
+        <div class="row" id="TDM">
+          <hr>
+          <h5>Para solicitudes TDM</h5>
+          <!--/*/*/*/*/*/*/*/*/*/ Tecnologia AXE /*/*/*/*/*/*/*/*/-->
+          <div class="col-6">
+            <h6>Tecnología AXE:</h6>
+                
+            <div class="col" >
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="AC05" value="AC05" name="tdm_axe">
+                <label class="form-check-label" for="AC05">AC05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CO09" value="CO09" name="tdm_axe">
+                <label class="form-check-label" for="CO09">CO09</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="NO05" value="NO05" name="tdm_axe">
+                <label class="form-check-label" for="NO05">NO05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CE06" value="CE06" name="tdm_axe">
+                <label class="form-check-label" for="CE06">CE06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CO14" value="CO14" name="tdm_axe">
+                <label class="form-check-label" for="CO14">CO14</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="NO07" value="NO07" name="tdm_axe">
+                <label class="form-check-label" for="NO07">NO07</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CE12" value="CE12" name="tdm_axe">
+                <label class="form-check-label" for="CE12">CE12</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="KE04" value="KE04" name="tdm_axe">
+                <label class="form-check-label" for="KE04">KE04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SF00" value="SF00" name="tdm_axe">
+                <label class="form-check-label" for="SF00">SF00</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CH12" value="CH12" name="tdm_axe">
+                <label class="form-check-label" for="CH12">CH12</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="MU05" value="MU05" name="tdm_axe">
+                <label class="form-check-label" for="MU05">MU05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="TW05" value="TW05" name="tdm_axe">
+                <label class="form-check-label" for="TW05">TW05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CO04" value="CO04" name="tdm_axe">
+                <label class="form-check-label" for="CO04">CO04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="MU08" value="MU08" name="tdm_axe">
+                <label class="form-check-label" for="MU08">MU08</label>
+              </div>
+              <hr>
+            </div>
+
+          </div>
+          <div class="col-6">
+            <h6>Tecnología EWSD:</h6>
+            
+            <div class="col" >
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="AC02" value="AC02" name="tdm_ewsd">
+                <label class="form-check-label" for="AC02">AC02</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CE01" value="CE01" name="tdm_ewsd">
+                <label class="form-check-label" for="CE01">CE01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CU01" value="CU01" name="tdm_ewsd">
+                <label class="form-check-label" for="CU01">CU01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="KE06" value="KE06" name="tdm_ewsd">
+                <label class="form-check-label" for="KE06">KE06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="PA01" value="PA01" name="tdm_ewsd">
+                <label class="form-check-label" for="PA01">PA01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SF01" value="SF01" name="tdm_ewsd">
+                <label class="form-check-label" for="SF01">SF01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="AU05" value="AU05" name="tdm_ewsd">
+                <label class="form-check-label" for="AU05">AU05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CE04" value="CE04" name="tdm_ewsd">
+                <label class="form-check-label" for="CE04">CE04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="MU06" value="MU06" name="tdm_ewsd">
+                <label class="form-check-label" for="MU06">MU06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="RI06" value="RI06" name="tdm_ewsd">
+                <label class="form-check-label" for="RI06">RI06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SH06" value="SH06" name="tdm_ewsd">
+                <label class="form-check-label" for="SH06">SH06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="BA04" value="BA04" name="tdm_ewsd">
+                <label class="form-check-label" for="BA04">BA04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CH01" value="CH01" name="tdm_ewsd">
+                <label class="form-check-label" for="CH01">CH01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="NI04" value="NI04" name="tdm_ewsd">
+                <label class="form-check-label" for="NI04">NI04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SA03" value="SA03" name="tdm_ewsd">
+                <label class="form-check-label" for="SA03">SA03</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SI06" value="SI06" name="tdm_ewsd">
+                <label class="form-check-label" for="SI06">SI06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="BC01" value="BC01" name="tdm_ewsd">
+                <label class="form-check-label" for="BC01">BC01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CO05" value="CO05" name="tdm_ewsd">
+                <label class="form-check-label" for="CO05">CO05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="FO01" value="FO01" name="tdm_ewsd">
+                <label class="form-check-label" for="FO01">FO01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="NO03" value="NO03" name="tdm_ewsd">
+                <label class="form-check-label" for="NO03">NO03</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SB04" value="SB04" name="tdm_ewsd">
+                <label class="form-check-label" for="SB04">SB04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SJ02" value="SJ02" name="tdm_ewsd">
+                <label class="form-check-label" for="SJ02">SJ02</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="BS06" value="BS06" name="tdm_ewsd">
+                <label class="form-check-label" for="BS06">BS06</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="CR01" value="CR01" name="tdm_ewsd">
+                <label class="form-check-label" for="CR01">CR01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="HO01" value="HO01" name="tdm_ewsd">
+                <label class="form-check-label" for="HO01">HO01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="OL05" value="OL05" name="tdm_ewsd">
+                <label class="form-check-label" for="OL05">OL05</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SC03" value="SC03" name="tdm_ewsd">
+                <label class="form-check-label" for="SC03">SC03</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="SU03" value="SU03" name="tdm_ewsd">
+                <label class="form-check-label" for="SU03">SU03</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="TI01" value="TI01" name="tdm_ewsd">
+                <label class="form-check-label" for="TI01">TI01</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="TO04" value="TO04" name="tdm_ewsd">
+                <label class="form-check-label" for="TO04">TO04</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ETBBO" value="ETBBO" name="tdm_ewsd">
+                <label class="form-check-label" for="ETBBO">ETBBO</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="ETBCL" value="ETBCL" name="tdm_ewsd">
+                <label class="form-check-label" for="ETBCL">ETBCL</label>
+              </div>
+
+            </div>
+            <hr>
+          </div>
+        </div>
+
+        <!--/*/*/*/*/*/*/*/*/*/ Plataforma NGN /*/*/*/*/*/*/*/*/-->
+        <div class="row" id="NGN">
+          <hr>
+          <h5>Para solicitudes NGN</h5>
+          <!--/*/*/*/*/*/*/*/*/*/ TecnologiaS NGN /*/*/*/*/*/*/*/*/-->
+          <div class="col">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="Correo_de_Voz" value="Correo de Voz" name="ngn">
+              <label class="form-check-label" for="Correo_de_Voz">Correo de Voz</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="Grabadora_Chico" value="Grabadora Chicó" name="ngn">
+              <label class="form-check-label" for="Grabadora_Chico">Grabadora Chicó</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="Grabadora_Centro" value="Grabadora Centro" name="ngn">
+              <label class="form-check-label" for="Grabadora_Centro">Grabadora Centro</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="HSS_Bogota" value="HSS - Bogotá" name="ngn">
+              <label class="form-check-label" for="HSS_Bogota">HSS - Bogotá</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="HSS_Cali" value="HSS - Cali" name="ngn">
+              <label class="form-check-label" for="HSS_Cali">HSS - Cali</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="IMS_Bogota" value="IMS Bogotá" name="ngn">
+              <label class="form-check-label" for="IMS_Bogota">IMS Bogotá</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="IMS_Cali" value="IMS Cali" name="ngn">
+              <label class="form-check-label" for="IMS_Cali">IMS Cali</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="IVR_Interno" value="IVR Interno" name="ngn">
+              <label class="form-check-label" for="IVR_Interno">IVR Interno</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="IVR_Call_Center" value="IVR Call Center" name="ngn">
+              <label class="form-check-label" for="IVR_Call_Center">IVR Call Center</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="MARCAM" value="MARCAM" name="ngn">
+              <label class="form-check-label" for="MARCAM">MARCAM</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="MSOFT_Bogota" value="MSOFT Bogotá" name="ngn">
+              <label class="form-check-label" for="MSOFT_Bogota">MSOFT Bogotá</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="MSOFT_Cali" value="MSOFT Cali" name="ngn">
+              <label class="form-check-label" for="MSOFT_Cali">MSOFT Cali</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="NET_NET_CENTRAL" value="NET NET CENTRAL" name="ngn">
+              <label class="form-check-label" for="NET_NET_CENTRAL">NET NET CENTRAL</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="PREPAGO" value="PREPAGO" name="ngn">
+              <label class="form-check-label" for="PREPAGO">PREPAGO</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="RED_INTELIGENTE" value="RED INTELIGENTE" name="ngn">
+              <label class="form-check-label" for="RED_INTELIGENTE">RED INTELIGENTE</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SAS" value="SAS" name="ngn">
+              <label class="form-check-label" for="SAS">SAS</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SATIP" value="SATIP" name="ngn">
+              <label class="form-check-label" for="SATIP">SATIP</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SBC_ORACLE" value="SBC ORACLE" name="ngn">
+              <label class="form-check-label" for="SBC_ORACLE">SBC ORACLE</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SBC_HUAWEI" value="SBC HUAWEI" name="ngn">
+              <label class="form-check-label" for="SBC_HUAWEI">SBC HUAWEI</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SLB_Bogota" value="SLB Bogotá" name="ngn">
+              <label class="form-check-label" for="SLB_Bogota">SLB Bogotá</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SG7000_Centro" value="SG7000 Centro" name="ngn">
+              <label class="form-check-label" for="SG7000_Centro">SG7000 Centro</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SG7000_Chico" value="SG7000 Chico" name="ngn">
+              <label class="form-check-label" for="SG7000_Chico">SG7000 Chico</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SPG_Bogota" value="SPG Bogotá" name="ngn">
+              <label class="form-check-label" for="SPG_Bogota">SPG Bogotá</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SPG_Cali" value="SPG Cali" name="ngn">
+              <label class="form-check-label" for="SPG_Cali">SPG Cali</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SRP" value="SRP" name="ngn">
+              <label class="form-check-label" for="SRP">SRP</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="Sonda_OCOM_Palladion" value="Sonda OCOM Palladion" name="ngn">
+              <label class="form-check-label" for="Sonda_OCOM_Palladion">Sonda OCOM Palladion</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SX3000_ATCA_Bogota" value="SX3000 ATCA Bogotá" name="ngn">
+              <label class="form-check-label" for="SX3000_ATCA_Bogota">SX3000 ATCA Bogotá</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="SX3000_ATCA_Cali" value="SX3000 ATCA Cali" name="ngn">
+              <label class="form-check-label" for="SX3000_ATCA_Cali">SX3000 ATCA Cali</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="Tarificador" value="Tarificador" name="ngn">
+              <label class="form-check-label" for="Tarificador">Tarificador</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Autopista" value="UMG Autopista" name="ngn">
+              <label class="form-check-label" for="UMG_Autopista">UMG Autopista</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Cali_Fijas" value="UMG Cali Fijas" name="ngn">
+              <label class="form-check-label" for="UMG_Cali_Fijas">UMG Cali Fijas</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Cali_Moviles" value="UMG Cali Móviles" name="ngn">
+              <label class="form-check-label" for="UMG_Cali_Moviles">UMG Cali Móviles</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Centro" value="UMG Centro" name="ngn">
+              <label class="form-check-label" for="UMG_Centro">UMG Centro</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Chico" value="UMG Chicó" name="ngn">
+              <label class="form-check-label" for="UMG_Chico">UMG Chicó</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Cuni" value="UMG Cuni" name="ngn">
+              <label class="form-check-label" for="UMG_Cuni">UMG Cuni</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Muzu" value="UMG Muzú" name="ngn">
+              <label class="form-check-label" for="UMG_Muzu">UMG Muzú</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_Normandia" value="UMG Normandía" name="ngn">
+              <label class="form-check-label" for="UMG_Normandia">UMG Normandía</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_NGN" value="UMG - NGN" name="ngn">
+              <label class="form-check-label" for="UMG_NGN">UMG - NGN</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="UMG_San_Fernando" value="UMG San Fernando" name="ngn">
+              <label class="form-check-label" for="UMG_San_Fernando">UMG San Fernando</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="VASCLOUD" value="VASCLOUD" name="ngn">
+              <label class="form-check-label" for="VASCLOUD">VASCLOUD</label>
+            </div>
+          </div>
+          <br>
+        </div>
+
+        <!--/*/*/*/*/*/*/*/*/*/ ACeeso VPN /*/*/*/*/*/*/*/*/-->
+        <div class="row" id="VPN">
+          <div class="container-fluid">
+            <hr>
+            <h5>Acceso VPN</h5>
+            <div class="col">
+              <label for="inputAddress" class="form-label">Periodo de Uso</label>
+              <input type="text" class="form-control" id="periodo_uso_vpn" placeholder="6 meses">
+            </div>
+            <div class="col">
+              <br>
+              <label for="inputAddress" class="form-label">TIPO DE ACCESO (INTERNO/EXTERNO) - GRUPO DE ACCESO SI SE CONOCE</label>
+              <textarea class="form-control" id="tipo_acceso_vpn" rows="2"></textarea>
+            </div>
+
+            <div class="col">
+              <br>
+              <label for="inputAddress" class="form-label">DESTINO (Dirección IP / Rango / Red )</label>
+              <textarea class="form-control" id="destino_vpn" rows="2"></textarea>
+            </div>
+
+            <div class="col">
+              <br>
+              <label for="inputAddress" class="form-label">SERVICIO/ N° de PUERTO / TIPO DE PUERTO (TCP/UDP)</label>
+              <textarea class="form-control" id="servicio_vpn" rows="2"></textarea>
+              <br>
+            </div>           
+          </div>
+        </div>
+      </div>
+
+
+
+      <!--Relacion de Usuarios-->
+      <div class="row bd-callout" style="width: 97%;">
+        
+        <h4 class="text-decoration-underline">Relación de Usuarios</h4>
+
+        <!--Grupo Area-->
+        <div class="col-md-6">
+          <label for="inputAddress" class="form-label">Area / Grupo Funcional:</label>
+          <input type="text" class="form-control" id="grupo_area" placeholder="" required minlength="3">
+        </div>
+        <!--Vicepresidencia-->
+        <div class="col-md-6">
+          <label for="inputAddress2" class="form-label">Vicepresidencia</label>
+          <input type="text" class="form-control" id="vicepresidencia" placeholder="" required
+            minlength="5">
+          <br>
+        </div>
+        <!--Seleccion cantidad de usuarios-->
+        <div class="form-floating">
+          <select class="form-select" id="cont_user" name="cont_user" required aria-label="Default select example"
+            onchange="generar_tabla()">
+            <option selected value="1">1</option>
+          </select>
+          <label for="floatingSelect">Cantidad de Usuarios</label>
+        </div>
+
+        <!--Tabla Relacion de UsuariosUsuarios-->
+        <div class="table-responsive-sm">
+          <table class="table table-bordered table-hover caption-top" id="tabla_usuarios">
+            <caption>Lista de Usuarios</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Líder Funcional</th>
+                <th scope="col">Nombre completo del usuario</th>
+                <th scope="col" width="15%">No. C.C.</th>
+                <th scope="col" width="12%">Usuario de</th>
+                <th scope="col">Correo Corporativo</th>
+                <!--<th scope="col">Firma</th>-->
+              </tr>
+            </thead>
+            <tbody id="tabla_registros">
+              <tr>
+                <th scope="row">1</th>
+                <td><input type="text" class="form-control" id="" placeholder="" required minlength="9" name="nombre_lider"></td>
+                <td><input type="text" class="form-control" id="" placeholder="" required minlength="9" name='nombre_usuario'></td>
+                <td><input type="number" class="form-control" id="" placeholder="" name='cedula_usuario' required min="1000000" maxlength="10"
+                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                </td>
+                <td><input type="text" class="form-control" id="" placeholder="" name='usuario' required minlength="7" maxlength="9">
+                </td>
+                <td><input type="email" class="form-control" id="" placeholder="" name="correo_usuario" required></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!--Autorizadores-->
+      <div class="row bd-callout" style="width: 97%;">
+        <h4 class="text-decoration-underline">Datos Autorizadores - Aprobadores</h4>
+        <!--Datos Autorizado-->
+        <div class="col-lg border-end border-5">
+          <br>
+          <h6>Datos Gerente, Director o Autorizado ETB</h6>
+
+          <div class="col">
+            <label for="validationTextarea" class="form-label">Nombre Completo</label>
+            <select class="form-select" id="autorizados" name="" required aria-label="Default select example">
+              <option selected value="">-----</option>
+            </select>
+            <br>
+          </div>
+          <div class="col">
+            <label for="inputAddress2" class="form-label">Cédula</label>
+            <input type="number" class="form-control" id="cedula_autorizado" required disabled>
+            <br>
+          </div>
+
+          <div class="col">
+            <label for="inputAddress" class="form-label">Cargo</label>
+            <select class="form-select" id="cargos_etb_autorizado" name="" required aria-label="Default select example">
+              <option selected value="">-----</option>
+            </select>
+            <br>
+          </div>
+        </div>
+        <!--Datos Supervisor Contrato-->
+        <div class="col-lg ">
+          <br>
+          <h6>Datos de Supervisor Administrativo Contrato - Aprobación</h6>
+
+          <div class="col">
+            <label for="validationTextarea" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control is-invalid" id="supervisor" placeholder="Nombres y apellidos" minlength="5">
+            <br>
+          </div>
+
+          <div class="col">
+            <label for="inputAddress2" class="form-label">Cédula</label>
+            <input type="number" class="form-control" id="cedula_supervisor" placeholder="" min="1000000" maxlength="10"
+            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+            <br>
+          </div>
+
+
+          <div class="col">
+            <label for="inputAddress" class="form-label">Cargo</label>
+            <select class="form-select" id="cargos_etb_supervisor" name="">
+              <option selected value="">-----</option>
+            </select>
+            <br>
+          </div>
+          <div class="col">
+            <label for="validationTextarea" class="form-label">No. Contrato</label>
+            <input type="text" class="form-control" id="contrato" placeholder="" >
+            <br>
+          </div>
+        </div>
+
+      </div>
+
+      <!--Botón Descarga-->
+
+      
+    </form>
+    <div class="d-grid gap-2 col-12 mx-auto">
+      <br>
+
+        <button type="button" id="descarga" class="btn btn-danger" onclick="formato_a_pdf()" >DESCARGAR FORMATO EN PDF</button>
+        
+    </div>
+
+  </div>
+
+
+  <br>
+  <br>
+
+  <!--Bootstrap-->
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <!--jQuery-->
+  <script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
+  <!--DataChained para selects anidados-->
+  <script src="js/jquery.chained.min.js"></script>
+  <!--Lógica-->
+  <script src="js/formato.js"></script>
+  <!--Permite Guarda archivos del lado del cliente-->
+  <script src="js/FileSaver.min.js"></script>
+    <!--Permite Generar archivo en PDF-->
+  <script src="js/jspdf.min.js"></script>
+    <!--Construcción formato Gestion Acceso en pdf-->
+  <script src="js/generador_pdf.js"></script>
+
+
+
+
+</body>
+
+</html>
