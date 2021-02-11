@@ -591,6 +591,7 @@ $("#plataforma_1, #plataforma_2, #plataforma_3, #plataforma_4, #plataforma_5, #p
 
 //Setea el perfil siempre que haya cambio de plataforma
 $("#plataforma_1").change(function(){
+    console.log("cambio");
     $("#perfiles_1").val('');
 });
 
