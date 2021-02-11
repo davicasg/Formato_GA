@@ -629,41 +629,47 @@ $("#autorizados").change(function(){
         let data_correos_usuarios=[];
         var validacion_plataformas=0;
         var validacion_contratista=0;
-        //Si la longitud del campo lider es mayor a 9 digitos, se guarda el valor en el array
-        $("input[name=nombre_lider]").each(function(){
-            if (this.value.length >=9 ){
-                data_lideres.push(this.value);
-            }
-        });
+        //$("#cont_user").change(function(){
+            //Si la longitud del campo lider es mayor a 9 digitos, se guarda el valor en el array
+            $("input[name=nombre_lider]").each(function(){
+                if (this.value.length >=9 ){
+                    data_lideres.push(this.value);
+                }
+            });
 
-        //Si la longitud del campo nombre de usuario es mayor a 9 digitos, se guarda el valor en el array
-        $("input[name=nombre_usuario]").each(function(){
-            if (this.value.length >=9 ){
-                data_nombres_usuarios.push(this.value);
-            }
-        });
+            //Si la longitud del campo nombre de usuario es mayor a 9 digitos, se guarda el valor en el array
+            $("input[name=nombre_usuario]").each(function(){
+                if (this.value.length >=9 ){
+                    data_nombres_usuarios.push(this.value);
+                }
+            });
 
-        //Si la longitud del campo cedula de usuario es mayor a 7 digitos y mayor a 1000000, se guarda el valor en el array
-        $("input[name=cedula_usuario]").each(function(){
-            if (this.value.length >=7 && this.value >= 1000000 ){
-                data_cedulas_usuarios.push(this.value);
-            }
-        });
+            //Si la longitud del campo cedula de usuario es mayor a 7 digitos y mayor a 1000000, se guarda el valor en el array
+            $("input[name=cedula_usuario]").each(function(){
+                if (this.value.length >=7 && this.value >= 1000000 ){
+                    data_cedulas_usuarios.push(this.value);
+                }
+            });
 
-        //Si la longitud del campo usuario es mayor o igual a 7 digitos, se guarda el valor en el array
-        $("input[name=usuario]").each(function(){
-            if (this.value.length >=7 ){
-                data_usuarios.push(this.value);
-            }
-        });
+            //Si la longitud del campo usuario es mayor o igual a 7 digitos, se guarda el valor en el array
+            $("input[name=usuario]").each(function(){
+                if (this.value.length >=7 ){
+                    data_usuarios.push(this.value);
+                }
+            });
 
-        var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);//Expresion regular que valida un correo electronico
-        //Si la longitud del campo correo es mayor o igual a 7 digitos, se guarda el valor en el array
-        $("input[name=correo_usuario]").each(function(){
-            if (this.value.length >=12 && caract.test(this.value) == true ){
-                data_correos_usuarios.push(this.value);
-            }
-        });
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);//Expresion regular que valida un correo electronico
+            //Si la longitud del campo correo es mayor o igual a 7 digitos, se guarda el valor en el array
+            $("input[name=correo_usuario]").each(function(){
+                if (this.value.length >=12 && caract.test(this.value) == true ){
+                    data_correos_usuarios.push(this.value);
+                }
+            });
+
+        //});
+
+
+
 
         if($("#cont_platforms").val()==1){
             if($("#perfiles_1").val() != ""){
